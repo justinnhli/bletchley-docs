@@ -1,7 +1,15 @@
 # Bletchley Administrators Guide
 
-## TODO 
+* assumes basic Linux and command line usage
 
-* node tests
-* notification lists
-* configuration details
+## Support Hierarchy
+
+* getting on the sudoers list
+
+## Slurm Technical Details
+
+## System Monitoring
+
+## System Test Scripts
+
+## Configuration Details

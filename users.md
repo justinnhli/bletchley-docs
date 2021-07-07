@@ -5,14 +5,15 @@
 * [The Bletchley Cluster](#the-bletchley-cluster)
 * [Accessing Bletchley](#accessing-bletchley)
 * [Command Line Basics](#command-line-basics)
-* [The Slurm Workload manager](#the-slurm-workload-manager)
-* [Language Specific Examples](#language-specific-examples)
+* [The Slurm Workload Manager](#the-slurm-workload-manager)
+* [Language-Specific Examples](#language-specific-examples)
     * [Docker](#docker)
     * [Gaussian](#gaussian)
     * [Matlab](#matlab)
     * [Python](#python)
     * [R](#r)
 * [Additional Support](#additional-support)
+* [Appendix: Bletchley Technical Details](#appendix-bletchley-technical-details)
 
 ## The Bletchley Cluster
 
@@ -25,9 +26,6 @@ Bletchley is open to be used by Oxy professors and students for teaching and res
 <!--
 * what is it? why?
 * who can use it?
-* what is available?
-    * in terms of computing power and storage
-    * in terms of hardware
 * who to contact to start using it?
 -->
 
@@ -43,6 +41,10 @@ Bletchley is open to be used by Oxy professors and students for teaching and res
 * getting help
 * basic navigation
 * text editing (advanced)
+
+## Uploading Files
+
+* FTP?
 
 ## The Slurm Workload Manager
 
@@ -66,3 +68,23 @@ Bletchley is open to be used by Oxy professors and students for teaching and res
 ## Additional Support
 
 * who to email
+
+## Appendix: Bletchley Technical Details
+
+As of summer 2021, the cluster is made of 27 individual computers (*nodes*), including:
+
+* 1 *head node* that manages the jobs to be run by the other nodes
+* 24 *compute nodes* that does the actual work. Each compute node has:
+    * 36 * 2.6GHz CPUs
+    * 8 nodes with 2.6, 10.6, and 21.3 GBs RAM/CPU each
+    * 960 GB hard disk space
+* 1 *GPU node* with several GPUs to speed up certain kinds of operations
+* 1 *storage node* that can store results and datasets
+    * 2 * 960GB hard disk space
+    * 34 * 8TB long-term storage space
+
+<!--
+* what is available?
+    * in terms of computing power and storage
+    * in terms of hardware
+-->

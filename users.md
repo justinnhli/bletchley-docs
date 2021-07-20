@@ -76,10 +76,127 @@ This command will print out which computer you are currently on. After you press
 
 ## Command Line Basics
 
+*Summary: Know what "command", "options", and "arguments" are, and know how to use `cd`, `ls`, and `man`. Use a tutorial for everything else.*
+
+The *command line interface* (CLI) or sometimes the *terminal* is a text-based interface for doing things on a computer. CLIs were originally the only way to get a computer to do things, until the development of the graphical user interface (GUI) in the mid 1970s, which eventually led to Windows and OS X that you're familiar with. Here is an example command line session:
+
+```
+[justinnhli@surnia-envy ~]$ ls
+ bin   courses   Desktop   Downloads   Dropbox   git   Library   media  'My Games'   oxy   papers   pim   scholarship   work
+[justinnhli@surnia-envy ~]$ ls -l
+total 84
+lrwxrwxrwx  1 justinnhli justinnhli    20 2016-05-21 16:15  bin -> git/dotfiles/bin/bin
+lrwxrwxrwx  1 justinnhli justinnhli    18 2021-07-07 17:53  courses -> oxy/courses/202201
+drwxr-xr-x  4 justinnhli justinnhli  4096 2021-07-07 11:10  Desktop
+drwx------  4 justinnhli justinnhli 32768 2021-07-17 11:50  Downloads
+drwx------ 14 justinnhli justinnhli 12288 2021-07-19 17:21  Dropbox
+drwxr-xr-x 20 justinnhli justinnhli  4096 2021-07-18 21:51  git
+lrwxrwxrwx  1 justinnhli justinnhli    24 2020-01-26 22:06  Library -> git/dotfiles/pip/Library
+drwxr-xr-x  9 justinnhli justinnhli  4096 2021-07-03 17:31  media
+drwxr-xr-x  3 justinnhli justinnhli  4096 2018-05-29 08:33 'My Games'
+lrwxrwxrwx  1 justinnhli justinnhli    12 2017-08-15 13:08  oxy -> Dropbox/oxy/
+drwxr-xr-x 28 justinnhli justinnhli  4096 2021-01-07 13:32  papers
+lrwxrwxrwx  1 justinnhli justinnhli    11 2020-05-19 11:34  pim -> Dropbox/pim
+lrwxrwxrwx  1 justinnhli justinnhli    20 2017-01-17 12:04  scholarship -> Dropbox/scholarship/
+drwxr-xr-x 11 justinnhli justinnhli  4096 2016-05-25 11:50  work
+[justinnhli@surnia-envy ~]$ ls -l Dropbox
+total 33516
+-rw-r--r--  1 justinnhli justinnhli       51 2017-03-31 18:55  api_keys
+drwxr-xr-x  2 justinnhli justinnhli     4096 2021-06-17 15:39  bin
+drwxr-xr-x  2 justinnhli justinnhli     4096 2021-07-13 14:02 'Camera Uploads'
+drwxr-xr-x  2 justinnhli justinnhli     4096 2021-07-03 12:05  croncheck
+drwxr-xr-x  5 justinnhli justinnhli     4096 2020-12-04 23:42  music
+drwxr-xr-x  3 justinnhli justinnhli    16384 2021-06-23 11:07  obsidian
+drwxr-xr-x 16 justinnhli justinnhli     4096 2020-04-09 21:46  oxy
+drwxr-xr-x  8 justinnhli justinnhli     4096 2021-01-10 17:41  personal
+drwxr-xr-x  8 justinnhli justinnhli     4096 2021-07-16 19:47  pim
+drwxr-xr-x 20 justinnhli justinnhli     4096 2021-07-14 16:08  projects
+drwxr-xr-x  5 justinnhli justinnhli     4096 2021-07-06 21:18  reference
+-rw-r--r--  1 justinnhli justinnhli   305937 2020-01-22 13:31  scanned-pages.pdf
+drwxr-xr-x 10 justinnhli justinnhli     4096 2018-09-07 22:39  scholarship
+-rw-r--r--  1 justinnhli justinnhli  2460602 2021-04-17 23:27  wallpaper.png
+[justinnhli@surnia-envy ~]$
+```
+
+There is a lot of information here that is irrelevant for using Bletchley, so we will focus on four things: the *prompt*, *commands*, *options*, and *arguments*. For example, the first line above (`[justinnhli@surnia-envy ~]$ ls`) has two parts:
+
+* Everything before the dollar sign (`[justinnhli@surnia-envy ~]$`) is the *prompt*. Your specific prompt may be different, but this is the computer waiting for you (or *prompting* you) to tell it to do something.
+
+* The remainder of that line (`ls`) is the *command*. Every command tells the computer to do something - in this case, `ls` asks the computer to *l*i*s*t the files in the current folder. The result of that command is the second line of the transcript above, so you can see that the folder has a `bin` file/folder, a `courses` file/folder, and so on.
+
+In the next line of the transcript, we issued another command (`ls -l`). Like before, this is asking the computer to list files, except we also gave it the `-l` *option*. As the name suggests, this tells the computer to do something slightly different - in this case, don't just list the file names, but also show additional information those files, such as when it was last modified.
+
+Finally, the last command we gave in the transcript is (`ls -l Dropbox`). The final part here (`Dropbox`) is the *argument*, which tells the computer *which folder* to list the contents of. In general, *options* will being with a hyphen (`-`), while *arguments* will not.
+
+To sum up, to use the command line, the computer will give you a *prompt* for you to tell it what to do. Everything you type in is a *command*, and you can specify *how* that command works with *options*, and *what* it runs on with *arguments*.
+
+That's really it! The rest of using the command line is about knowing what commands exist. We will look at a few below.
+
+### Basic Navigation
+
+When you first log into Bletchley, you will be in your "home directory". ("Directory" is another word for "folder".) All your files and folders will be inside this directory, and it's your private workspace on the cluster. To confirm this, the first command is `pwd`:
+
+```
+[justinnhli@surnia-envy ~]$ pwd
+/home/justinnhli
+[justinnhli@surnia-envy ~]$
+```
+
+`pwd` stands for "present working directory", and it tells you which folder you are in; in this case, we are currently in `/home/justinnhli`. This means that you are currently in the `justinnhli` folder inside the `home` folder, which is where all home directories exist.
+
+To make things more interesting, let's create a new folder. You can do this with the `mkdir` command:
+
+```
+[justinnhli@surnia-envy ~]$ mkdir test
+[justinnhli@surnia-envy ~]$
+```
+
+`mkdir` stands for "make directory", and the command should have created a folder called `test`. Notice that nothing else was printed out after the `mkdir` command. This is perfectly normal - CLIs tend to be rather terse, so no printout usually means that the command succeeded. To confirm that we did in fact create the `test` folder, we can use `ls`:
+
+```
+[justinnhli@surnia-envy ~]$ ls
+ test
+[justinnhli@surnia-envy ~]$
+```
+
+The last command we will talk about here is `cd`, which stands for "change directory". As you might imagine, this will take you inside a folder:
+
+```
+[justinnhli@surnia-envy ~]$ cd test
+[justinnhli@surnia-envy test]$ pwd
+/home/justinnhli/test
+[justinnhli@surnia-envy test]$ ls
+[justinnhli@surnia-envy test]$
+```
+
+The three commands we used here first took us into the `test` folder (`cd test`), then printed out where we were (`pwd`), and finally listed the (currently empty) `test` folder (`ls`). You will notice that the prompt has also changed to show me which folder I am in; I configured my prompt do to this, so don't be worried if yours doesn't.
+
+Finally, we can go back to our home directory using `cd` without any arguments:
+
+```
+[justinnhli@surnia-envy test]$ cd
+[justinnhli@surnia-envy ~]$ pwd
+/home/justinnhli
+[justinnhli@surnia-envy ~]$
+```
+
+You will use these three commands - `cd`, `ls`, and `pwd` - over and over again as you work on Bletchley, so you should get pretty familiar with what they do and how they work.
+
+### Additional Resources
+
+Mastering the command line takes years, so we recommend learning commands as you need them. If you want to learn more, however, here are some resources you might use:
+
+* [Command Line for Beginners tutorial](https://ubuntu.com/tutorials/command-line-for-beginners) - a complete tutorial on learning the command line.
+* [Command Line Cheat Sheet](https://justinnhli.oxycreates.org/bash/) - a handy reference for common commands that you will use.
+* [A-Z Index of Commands](https://ss64.com/bash/) - a comprehensive reference for commands you might see.
+
+The last thing we will say is this: Google is your friend. Thousands of people have learned to use the command line and have asked questions on forums like Stack Overflow. If in doubt, just google a command (eg. "ls command line"), and there will be pages and pages of resources to help you figure things out.
+
+<!--
 * the command line
-* getting help
 * basic navigation
-* text editing (advanced)
+* additional resources
+-->
 
 ## Uploading Files
 

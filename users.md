@@ -198,9 +198,15 @@ The last thing we will say is this: Google is your friend. Thousands of people h
 * additional resources
 -->
 
-## Uploading Files
+## Uploading and Downloading Files
 
-* FTP?
+*Summary: Use an FTP client to move files to and from Bletchley.*
+
+Although you can create and edit files on Bletchley, the easiest way to write your code is to do it on your own computer, then upload it to Bletchley. To do this, you will need an FTP client; we recommend [FileZilla](https://filezilla-project.org/download.php?show_all=1). Once you have installed FileZilla, you can follow [their tutorial](https://wiki.filezilla-project.org/FileZilla_Client_Tutorial_(en)) (substituting your Bletchley login information) to upload files to the cluster. FileZilla will also allow you to download files from Bletchley, so that you can do additional analysis on your computer.
+
+More advanced ways of moving files to Bletchley and keeping the files in sync with each other, such as using git, are beyond the scope of this tutorial.
+
+__Important__: Note that Bletchley does __not__ have a backup/archive system. This means that if you delete something from Bletchley, there is no way to recover that file if you don't have a copy yourself. For this reason, we recommend uploading files to Bletchley only once they are ready, and downloading any changed code or result files from Bletchley as soon as possible.
 
 ## The Slurm Workload Manager
 

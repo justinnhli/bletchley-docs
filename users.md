@@ -132,7 +132,7 @@ To sum up, to use the command line, the computer will give you a *prompt* for yo
 
 That's really it! The rest of using the command line is about knowing what commands exist. We will look at a few below.
 
-### Basic Navigation
+### Navigating via the Command Line
 
 When you first log into Bletchley, you will be in your "home directory". ("Directory" is another word for "folder".) All your files and folders will be inside this directory, and it's your private workspace on the cluster. To confirm this, the first command is `pwd`:
 
@@ -202,18 +202,47 @@ The last thing we will say is this: Google is your friend. Thousands of people h
 
 *Summary: Use an FTP client to move files to and from Bletchley.*
 
-Although you can create and edit files on Bletchley, the easiest way to write your code is to do it on your own computer, then upload it to Bletchley. To do this, you will need an FTP client; we recommend [FileZilla](https://filezilla-project.org/download.php?show_all=1). Once you have installed FileZilla, you can follow [their tutorial](https://wiki.filezilla-project.org/FileZilla_Client_Tutorial_(en)) (substituting your Bletchley login information) to upload files to the cluster. FileZilla will also allow you to download files from Bletchley, so that you can do additional analysis on your computer.
+Although you can create and edit files on Bletchley, the easiest way to write your code is to do it on your own computer then upload it to Bletchley. To do this, you will need an FTP client; we recommend [FileZilla](https://filezilla-project.org/download.php?show_all=1). Once you have installed FileZilla, you can follow [their tutorial](https://wiki.filezilla-project.org/FileZilla_Client_Tutorial_(en)) (substituting your Bletchley login information) to upload files to the cluster. FileZilla will also allow you to download files from Bletchley, so that you can do additional analysis on your computer.
 
 More advanced ways of moving files to Bletchley and keeping the files in sync with each other, such as using git, are beyond the scope of this tutorial.
 
 __Important__: Note that Bletchley does __not__ have a backup/archive system. This means that if you delete something from Bletchley, there is no way to recover that file if you don't have a copy yourself. For this reason, we recommend uploading files to Bletchley only once they are ready, and downloading any changed code or result files from Bletchley as soon as possible.
 
-## The Slurm Workload Manager
+## Running Your Code
 
-* overall architecture/components
-    * queues
-* job submission commands
-* job monitoring commands
+*Summary: Run your code by submitting it to Slurm, Bletchey's job manager.*
+
+Almost all high-performance clusters like Bletchley have a *workload manager* or *job scheduling system* that manages what programs are running and where they run. On Bletchley, this program is called Slurm. Slurm's role is to make sure that whenever someone wants to use Bletchley, they can be assigned a CPU (or multiple CPUs) with enough memory to run their program, without monopolizing the cluster from other people. Although you can run programs directly on Bletchley, this is *highly* discouraged, as you may prevent other users from doing their work; anyone found doing this may have their access to Bletchley removed. Running programs directly from the command line should be reserved for testing your code, and once you are confident your code works, you should then ask Slurm to assign your program to a CPU.
+
+In general, your workflow for using Bletchley will look like this:
+
+1. Develop the code on your own computer, and make sure that it works there (on a small example).
+2. Upload your code to Bletchley.
+3. Run your code from the command line in Bletchley on a small example, to make sure it still works.
+4. Modify your code to do the actual work instead of the small example.
+5. Submit your code to Slurm and wait for it to finish
+6. Download any result files to be analyzed.
+
+In workload manager parlance, the code your submit to Slurm is called a *job*. When you submit a job to Slurm, you must specify which *partition* the job goes into. For Bletchley, the partitions are separated by the amount of memory your code needs, and how long you think your code will run for. Based on those requirements, Slurm will then assign an appropriate CPU(s) to run the job. The partitions available on Bletchley are:
+
+* `demo`, which has a runtime limit of 1 min
+* `teaching`, which has a runtime limit of 5 min
+* `short`, which has a runtime limit of 5 hours
+* `medium`, which has a runtime limit of 48 hours
+* `long`, which has a runtime limit of 7 days
+* `unlimited`, which has an unlimited runtime
+
+Note: there are additional partitions reserved for particular research groups; your professor or the HPCC will tell you if you should use of those instead.
+
+When picking a partition to submit your job to, you should pick the one that gives enough time for your program to finish, but not too much beyond that. This is because Slurm uses these time estimates to assign CPUs, and also because if you are in a partition with long jobs, it may take longer before your job is run.
+
+### Submitting Jobs
+
+*Summary: Use the `srun` command to submit jobs to Slrum.*
+
+### Monitoring and Managing Jobs
+
+*Summary: Use the `squeue` command to see what jobs are running, and the `scancel` command to cancel running/scheduled jobs.*
 
 ## Language-Specific Examples
 

@@ -19,7 +19,7 @@
 
 *Summary: Bletchley is a powerful computer open for use by anyone in the Oxy community.*
 
-Bletchley is a *high-performance computing (HPC) cluster* - a (network of) computers that work together to perform computations. Bletchley is Oxy's own cluster, the result of an [NSF MRI grant](https://www.nsf.gov/awardsearch/showAward?AWD_ID=1919771). In a lot of social and physical sciences, research increasingly involves processing large amounts of data or finding the optimal configuration out of many possible parameters. Doing this requires not only requires lots of computing power, but also multi-day run-times that Oxy's other infrastructure cannot support. The Bletchley cluster exists to support these kinds of research, and also acts as an instrument where students can learn how to apply computational methods.
+Bletchley is a *high-performance computing (HPC) cluster* - a network of computers that work together to perform computations. Bletchley is Oxy's own cluster, the result of an [NSF MRI grant](https://www.nsf.gov/awardsearch/showAward?AWD_ID=1919771). In a lot of social and physical sciences, research increasingly involves processing large amounts of data or finding the optimal configuration out of many possible parameters. Doing this requires not only requires lots of computing power, but also multi-day run-times that Oxy's other infrastructure cannot support. The Bletchley cluster exists to support these kinds of research, and also acts as an instrument where students can learn how to apply computational methods.
 
 Bletchley is open to be used by Oxy professors and students for teaching and research. This document serves as a technical user guide to Bletchley, and will walk through how to get access, some technical background on the command line and the workload manager, as well as starter code for running your program on the cluster.
 
@@ -169,7 +169,7 @@ The last command we will talk about here is `cd`, which stands for "change direc
 [justinnhli@bletchley test]$
 ```
 
-The three commands we used here first took us into the `test` folder (`cd test`), then printed out where we were (`pwd`), and finally listed the (currently empty) `test` folder (`ls`). You will notice that the prompt has also changed to show me which folder I am in; I configured my prompt do to this, so don't be worried if yours doesn't.
+The three commands we used here first took us into the `test` folder (`cd test`), then printed out where we were (`pwd`), and finally listed the (currently empty) `test` folder (`ls`). You will notice that the prompt has also changed to show me which folder we are in; we configured the prompt do to this, so don't be worried if yours doesn't.
 
 Finally, we can go back to our home directory using `cd` without any arguments:
 
@@ -232,7 +232,7 @@ In workload manager parlance, the code your submit to Slurm is called a *job*. W
 * `long`, which has a runtime limit of 7 days
 * `unlimited`, which has an unlimited runtime
 
-Note: there are additional partitions reserved for particular research groups; your professor or the HPCC will tell you if you should use of those instead.
+Note: there are additional partitions reserved for particular research groups; your professor or the HPCC will tell you if you should use any of those instead.
 
 When picking a partition to submit your job to, you should pick the one that gives enough time for your program to finish, but not too much beyond that. This is because Slurm uses these time estimates to assign CPUs, and also because if you are in a partition with long jobs, it may take longer before your job is run.
 

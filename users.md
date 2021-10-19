@@ -246,7 +246,7 @@ When picking a partition to submit your job to, you should pick the one that giv
 
 Submitting jobs to Slurm is done through the `srun` command. The complete syntax for the command is:
 
-> `srun --partition=<PARTITIONS> --nodelist=<NODELIST> --output=<FILENAME> COMMAND ...`
+`srun --partition=<PARTITIONS> --nodelist=<NODELIST> --output=<FILENAME> COMMAND ...`
 
 To break this down:
 

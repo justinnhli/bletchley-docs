@@ -236,9 +236,63 @@ Note: there are additional partitions reserved for particular research groups; y
 
 When picking a partition to submit your job to, you should pick the one that gives enough time for your program to finish, but not too much beyond that. This is because Slurm uses these time estimates to assign CPUs, and also because if you are in a partition with long jobs, it may take longer before your job is run.
 
-### Submitting Jobs
+### Running Jobs in the Foreground
 
 *Summary: Use the `srun` command to submit jobs to Slrum.*
+
+Submitting jobs to Slurm is done through the `srun` command. The complete syntax for the command is:
+
+> `srun --partition=<PARTITIONS> --nodelist=<NODELIST> --output=<FILENAME> COMMAND ...`
+
+To break this down:
+
+* `srun` is the name of the command
+* `--partition=<PARTITIONS>` is an option that tells Slurm which partition you would like your code to run on. If you don't provide this option, Slurm will run the job on the `demo` partition by default.
+* `--nodelist=<NODELIST>` is an option that tells Slurm which specific *node* you would like your code to run on. See below for details. If you don't provide this option, Slurm will run the job on `n001` by default.
+* `--output=<FILENAME>` is an option that tells Slurm what file to store the output of your command. If you don't provide this option, Slurm will directly print the output by default. __BE CAREFUL!__ If the file you specified already exists, Slurm will overwrite it without asking.
+* `COMMAND ...` are the arguments to `srun`; this would be how you normally run your code without Slurm.
+
+Remember how Bletchley is is actually a network of computers? Each of these computers is called a *node*, or more specifically a *compute node*, which does the actual work. When you log into Bletchley, you are actually logging into the *head node*, a special node which tells the other nodes what to do. Bletchley is currently (as of Fall 2021) made of 24 compute nodes, named `n001` to `n024`, with different amounts of memory available:
+
+* `n001`-`n008` each has 24 CPUs, with 2.6GB of RAM per CPU
+* `n009`-`n016` each has 24 CPUs, with 10.6GB of RAM per CPU
+* `n017`-`n024` each has 24 CPUs, with 21.3GB of RAM per CPU
+
+There is an additional node, `gpu01`, which has two GPUs for specialized computation. Your professor or the HPCC will tell you if you should use this node instead. As with selecting a partition, you should also pick a node with just enough memory for your program, so that more powerful nodes remain available for other users.
+
+Putting all of this together, we will use the Python script from the Examples section and run it with Slurm. Here we can run the script like this:
+
+```
+[justinnhli@bletchley ~]$ python3 example.py
+bletchley.oxy.edu
+```
+
+As you can see, the only thing the script does is print the name of the current node, which in this case is `bletchley.oxy.edu`. If we wanted to run this with Slurm instead, we will first have to decide the partition and the node to use. Since this script is so simple, we can just use the `demo` partition (for a runtime of up to one minute) and node `n001` (since we don't need much memory at all). Together, the command to run the script would be:
+
+`srun --partition=demo --nodelist=n001 --output=output.txt python3 example.py`
+
+This means that we are asking Slurm to run `python3 example.py` on the `demo` partition on node `n001`, and saving the output to `output.txt`. Let's see what happens when we do this:
+
+```
+[justinnhli@bletchley ~]$ ls
+example.py
+[justinnhli@bletchley ~]$ srun --partition=demo --nodelist=n001 --output=output.txt python3 example.py
+[justinnhli@bletchley ~]$ ls
+example.py  output.txt
+[justinnhli@bletchley ~]$ cat output.txt
+n001.cluster.com
+```
+
+Walking through step by step:
+
+1. We first do `ls` to see that the only thing in the current folder is `example.py`
+2. We submit the job to Slurm with `srun`. Notice that nothing is printed; this means that Slurm has accepted the job.
+3. When we do `ls` again, we now see there's a new file, `output.txt` - the file we told Slurm to save the output to.
+4. The `cat` command simply prints out its arguments, so `cat output.txt` will print out the contents of `output.txt`. As you can see, the result is `n001.cluster.com` - which means that our script actually ran on node `n001`.
+
+That's the basics of submitting a job to Slurm. The `srun` command has a lot of other options, which you can look up at <https://slurm.schedmd.com/srun.html>.
+
+### Running Jobs in the Background
 
 ### Monitoring and Managing Jobs
 

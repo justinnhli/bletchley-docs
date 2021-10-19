@@ -298,6 +298,8 @@ That's the basics of submitting a job to Slurm. The `srun` command has a lot of 
 
 ### Running Jobs in the Background
 
+*Summary: Append `&` to the `srun` command to run jobs in the background.*
+
 ### Monitoring and Managing Jobs
 
 *Summary: Use the `squeue` command to see what jobs are running, and the `scancel` command to cancel running/scheduled jobs.*

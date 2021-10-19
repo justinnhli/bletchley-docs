@@ -81,9 +81,9 @@ This command will print out which computer you are currently on. After you press
 The *command line interface* (CLI) or sometimes the *terminal* is a text-based interface for doing things on a computer. CLIs were originally the only way to get a computer to do things, until the development of the graphical user interface (GUI) in the mid 1970s, which eventually led to Windows and OS X that you're familiar with. Here is an example command line session:
 
 ```
-[justinnhli@surnia-envy ~]$ ls
+[justinnhli@bletchley ~]$ ls
  bin   courses   Desktop   Downloads   Dropbox   git   Library   media  'My Games'   oxy   papers   pim   scholarship   work
-[justinnhli@surnia-envy ~]$ ls -l
+[justinnhli@bletchley ~]$ ls -l
 total 84
 lrwxrwxrwx  1 justinnhli justinnhli    20 2016-05-21 16:15  bin -> git/dotfiles/bin/bin
 lrwxrwxrwx  1 justinnhli justinnhli    18 2021-07-07 17:53  courses -> oxy/courses/202201
@@ -99,7 +99,7 @@ drwxr-xr-x 28 justinnhli justinnhli  4096 2021-01-07 13:32  papers
 lrwxrwxrwx  1 justinnhli justinnhli    11 2020-05-19 11:34  pim -> Dropbox/pim
 lrwxrwxrwx  1 justinnhli justinnhli    20 2017-01-17 12:04  scholarship -> Dropbox/scholarship/
 drwxr-xr-x 11 justinnhli justinnhli  4096 2016-05-25 11:50  work
-[justinnhli@surnia-envy ~]$ ls -l Dropbox
+[justinnhli@bletchley ~]$ ls -l Dropbox
 total 33516
 -rw-r--r--  1 justinnhli justinnhli       51 2017-03-31 18:55  api_keys
 drwxr-xr-x  2 justinnhli justinnhli     4096 2021-06-17 15:39  bin
@@ -115,12 +115,12 @@ drwxr-xr-x  5 justinnhli justinnhli     4096 2021-07-06 21:18  reference
 -rw-r--r--  1 justinnhli justinnhli   305937 2020-01-22 13:31  scanned-pages.pdf
 drwxr-xr-x 10 justinnhli justinnhli     4096 2018-09-07 22:39  scholarship
 -rw-r--r--  1 justinnhli justinnhli  2460602 2021-04-17 23:27  wallpaper.png
-[justinnhli@surnia-envy ~]$
+[justinnhli@bletchley ~]$
 ```
 
-There is a lot of information here that is irrelevant for using Bletchley, so we will focus on four things: the *prompt*, *commands*, *options*, and *arguments*. For example, the first line above (`[justinnhli@surnia-envy ~]$ ls`) has two parts:
+There is a lot of information here that is irrelevant for using Bletchley, so we will focus on four things: the *prompt*, *commands*, *options*, and *arguments*. For example, the first line above (`[justinnhli@bletchley ~]$ ls`) has two parts:
 
-* Everything before the dollar sign (`[justinnhli@surnia-envy ~]$`) is the *prompt*. Your specific prompt may be different, but this is the computer waiting for you (or *prompting* you) to tell it to do something.
+* Everything before the dollar sign (`[justinnhli@bletchley ~]$`) is the *prompt*. Your specific prompt may be different, but this is the computer waiting for you (or *prompting* you) to tell it to do something.
 
 * The remainder of that line (`ls`) is the *command*. Every command tells the computer to do something - in this case, `ls` asks the computer to *l*i*s*t the files in the current folder. The result of that command is the second line of the transcript above, so you can see that the folder has a `bin` file/folder, a `courses` file/folder, and so on.
 
@@ -137,9 +137,9 @@ That's really it! The rest of using the command line is about knowing what comma
 When you first log into Bletchley, you will be in your "home directory". ("Directory" is another word for "folder".) All your files and folders will be inside this directory, and it's your private workspace on the cluster. To confirm this, the first command is `pwd`:
 
 ```
-[justinnhli@surnia-envy ~]$ pwd
+[justinnhli@bletchley ~]$ pwd
 /home/justinnhli
-[justinnhli@surnia-envy ~]$
+[justinnhli@bletchley ~]$
 ```
 
 `pwd` stands for "present working directory", and it tells you which folder you are in; in this case, we are currently in `/home/justinnhli`. This means that you are currently in the `justinnhli` folder inside the `home` folder, which is where all home directories exist.
@@ -147,26 +147,26 @@ When you first log into Bletchley, you will be in your "home directory". ("Direc
 To make things more interesting, let's create a new folder. You can do this with the `mkdir` command:
 
 ```
-[justinnhli@surnia-envy ~]$ mkdir test
-[justinnhli@surnia-envy ~]$
+[justinnhli@bletchley ~]$ mkdir test
+[justinnhli@bletchley ~]$
 ```
 
 `mkdir` stands for "make directory", and the command should have created a folder called `test`. Notice that nothing else was printed out after the `mkdir` command. This is perfectly normal - CLIs tend to be rather terse, so no printout usually means that the command succeeded. To confirm that we did in fact create the `test` folder, we can use `ls`:
 
 ```
-[justinnhli@surnia-envy ~]$ ls
+[justinnhli@bletchley ~]$ ls
  test
-[justinnhli@surnia-envy ~]$
+[justinnhli@bletchley ~]$
 ```
 
 The last command we will talk about here is `cd`, which stands for "change directory". As you might imagine, this will take you inside a folder:
 
 ```
-[justinnhli@surnia-envy ~]$ cd test
-[justinnhli@surnia-envy test]$ pwd
+[justinnhli@bletchley ~]$ cd test
+[justinnhli@bletchley test]$ pwd
 /home/justinnhli/test
-[justinnhli@surnia-envy test]$ ls
-[justinnhli@surnia-envy test]$
+[justinnhli@bletchley test]$ ls
+[justinnhli@bletchley test]$
 ```
 
 The three commands we used here first took us into the `test` folder (`cd test`), then printed out where we were (`pwd`), and finally listed the (currently empty) `test` folder (`ls`). You will notice that the prompt has also changed to show me which folder I am in; I configured my prompt do to this, so don't be worried if yours doesn't.
@@ -174,10 +174,10 @@ The three commands we used here first took us into the `test` folder (`cd test`)
 Finally, we can go back to our home directory using `cd` without any arguments:
 
 ```
-[justinnhli@surnia-envy test]$ cd
-[justinnhli@surnia-envy ~]$ pwd
+[justinnhli@bletchley test]$ cd
+[justinnhli@bletchley ~]$ pwd
 /home/justinnhli
-[justinnhli@surnia-envy ~]$
+[justinnhli@bletchley ~]$
 ```
 
 You will use these three commands - `cd`, `ls`, and `pwd` - over and over again as you work on Bletchley, so you should get pretty familiar with what they do and how they work.

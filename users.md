@@ -309,6 +309,46 @@ That's the basics of submitting a job to Slurm. The `srun` command has a lot of 
 
 *Summary: Append `&` to the `srun` command to run jobs in the background.*
 
+It wasn't noticeable with the previous example, which takes less than a second to run, but the Python program was actually running in the *foreground*. That is, your computer must remain connected to Bletchley, and it will stop the job if you log off. Often, what we want is for the job to run in the *background*, so that even if your disconnect, the job will continue running until it is done.
+
+We will need a longer running job to demonstrate this, so here's a Python countdown program:
+
+```python
+# countdown.py
+from time import sleep
+
+n = 300
+for time in reversed(range(1, n + 1)):
+    print(time)
+    sleep(1)
+```
+
+This program will count down from 300 every second until it reaches 0, meaning it will take 300 seconds = 5 minutes to complete. If we run it as before:
+
+```
+[justinnhli@bletchley ~]$ srun --partition=demo --nodelist=n001 --output=output.txt python3 countdown.py
+```
+
+Your command line will just hang waiting for the program to finish - nothing will happen even if you type more commands or press Enter. (Note that the job will actually be terminated after 1 minute instead of the full 5 minutes, because we are running it on the `demo` partition.) To make the job run in the background instead, we append a `&` at the end of the `srun` command:
+
+```
+[justinnhli@bletchley ~]$ srun --partition=short --nodelist=n001 --output=output.txt python3 countdown.py &
+srun: job 17235 queued and waiting for resources
+[justinnhli@bletchley ~]$
+[justinnhli@bletchley ~]$ ls
+countdown.py
+```
+
+Notice that this time, the command line will respond if we run the `ls` command. If we wait the 5 minutes and come back, we will see that `output.txt` indeed as our countdown:
+
+```
+[justinnhli@bletchley ~]$ cat output.txt
+300
+299
+298
+[...]
+```
+
 ### Monitoring and Managing Jobs
 
 *Summary: Use the `squeue` command to see what jobs are running, and the `scancel` command to cancel running/scheduled jobs.*

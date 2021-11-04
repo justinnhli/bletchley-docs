@@ -229,8 +229,8 @@ In general, your workflow for using Bletchley will look like this:
 
 In workload manager parlance, the code your submit to Slurm is called a *job*. When you submit a job to Slurm, you must specify which *partition* the job goes into. For Bletchley, the partitions are separated by the amount of memory your code needs, and how long you think your code will run for. Based on those requirements, Slurm will then assign an appropriate CPU(s) to run the job. The partitions available on Bletchley are:
 
-* `demo`, which has a runtime limit of 1 min
-* `teaching`, which has a runtime limit of 5 min
+* `demo`, which has a runtime limit of 1 minute
+* `teaching`, which has a runtime limit of 5 minutes
 * `short`, which has a runtime limit of 5 hours
 * `medium`, which has a runtime limit of 48 hours
 * `long`, which has a runtime limit of 7 days
@@ -246,7 +246,9 @@ When picking a partition to submit your job to, you should pick the one that giv
 
 Submitting jobs to Slurm is done through the `srun` command. The complete syntax for the command is:
 
-`srun --partition=<PARTITIONS> --nodelist=<NODELIST> --output=<FILENAME> COMMAND ...`
+```sh
+srun --partition=<PARTITIONS> --nodelist=<NODELIST> --output=<FILENAME> COMMAND ...
+```
 
 To break this down:
 
@@ -282,7 +284,9 @@ bletchley.oxy.edu
 
 As you can see, the only thing the script does is print the name of the current node, which in this case is `bletchley.oxy.edu`. If we wanted to run this with Slurm instead, we will first have to decide the partition and the node to use. Since this script is so simple, we can just use the `demo` partition (for a runtime of up to one minute) and node `n001` (since we don't need much memory at all). Together, the command to run the script would be:
 
-`srun --partition=demo --nodelist=n001 --output=output.txt python3 hostname.py`
+```sh
+srun --partition=demo --nodelist=n001 --output=output.txt python3 hostname.py
+```
 
 This means that we are asking Slurm to run `python3 hostname.py` on the `demo` partition on node `n001`, and saving the output to `output.txt`. Let's see what happens when we do this:
 
@@ -333,7 +337,7 @@ Your command line will just hang waiting for the program to finish - nothing wil
 
 ```
 [justinnhli@bletchley ~]$ srun --partition=short --nodelist=n001 --output=output.txt python3 countdown.py &
-srun: job 17235 queued and waiting for resources
+[1] 196488
 [justinnhli@bletchley ~]$
 [justinnhli@bletchley ~]$ ls
 countdown.py

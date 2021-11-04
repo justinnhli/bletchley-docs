@@ -355,6 +355,8 @@ Notice that this time, the command line will respond if we run the `ls` command.
 
 ## Language-Specific Examples
 
+This section contains additional information for specific languages/applications.
+
 ### Docker
 
 ### Gaussian
@@ -362,6 +364,8 @@ Notice that this time, the command line will respond if we run the `ls` command.
 ### Matlab
 
 ### Python
+
+It is common for Python projects to require additional packages, which you should install using `pip` in a virtual environment. See <https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/> for a detailed set of instructions for how to do this.
 
 ### R
 

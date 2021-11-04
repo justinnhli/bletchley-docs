@@ -264,32 +264,41 @@ Remember how Bletchley is is actually a network of computers? Each of these comp
 
 There is an additional node, `gpu01`, which has two GPUs for specialized computation. Your professor or the HPCC will tell you if you should use this node instead. As with selecting a partition, you should also pick a node with just enough memory for your program, so that more powerful nodes remain available for other users.
 
-Putting all of this together, we will use the Python script from the Examples section and run it with Slurm. Here we can run the script like this:
+Putting all of this together, we will use this Python program as the demonstration:
+
+```python
+# hostname.py
+import socket
+
+print(socket.gethostname())
+```
+
+We can run the script like this:
 
 ```
-[justinnhli@bletchley ~]$ python3 example.py
+[justinnhli@bletchley ~]$ python3 hostname.py
 bletchley.oxy.edu
 ```
 
 As you can see, the only thing the script does is print the name of the current node, which in this case is `bletchley.oxy.edu`. If we wanted to run this with Slurm instead, we will first have to decide the partition and the node to use. Since this script is so simple, we can just use the `demo` partition (for a runtime of up to one minute) and node `n001` (since we don't need much memory at all). Together, the command to run the script would be:
 
-`srun --partition=demo --nodelist=n001 --output=output.txt python3 example.py`
+`srun --partition=demo --nodelist=n001 --output=output.txt python3 hostname.py`
 
-This means that we are asking Slurm to run `python3 example.py` on the `demo` partition on node `n001`, and saving the output to `output.txt`. Let's see what happens when we do this:
+This means that we are asking Slurm to run `python3 hostname.py` on the `demo` partition on node `n001`, and saving the output to `output.txt`. Let's see what happens when we do this:
 
 ```
 [justinnhli@bletchley ~]$ ls
-example.py
-[justinnhli@bletchley ~]$ srun --partition=demo --nodelist=n001 --output=output.txt python3 example.py
+hostname.py
+[justinnhli@bletchley ~]$ srun --partition=demo --nodelist=n001 --output=output.txt python3 hostname.py
 [justinnhli@bletchley ~]$ ls
-example.py  output.txt
+hostname.py  output.txt
 [justinnhli@bletchley ~]$ cat output.txt
 n001.cluster.com
 ```
 
 Walking through step by step:
 
-1. We first do `ls` to see that the only thing in the current folder is `example.py`
+1. We first do `ls` to see that the only thing in the current folder is `hostname.py`
 2. We submit the job to Slurm with `srun`. Notice that nothing is printed; this means that Slurm has accepted the job.
 3. When we do `ls` again, we now see there's a new file, `output.txt` - the file we told Slurm to save the output to.
 4. The `cat` command simply prints out its arguments, so `cat output.txt` will print out the contents of `output.txt`. As you can see, the result is `n001.cluster.com` - which means that our script actually ran on node `n001`.

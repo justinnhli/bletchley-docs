@@ -357,6 +357,37 @@ Notice that this time, the command line will respond if we run the `ls` command.
 
 *Summary: Use the `squeue` command to see what jobs are running, and the `scancel` command to cancel running/scheduled jobs.*
 
+In addition to submitting jobs, you can also check on jobs that Slurm is currently running, and cancel them if it's necessary. If we submit a job for `countdown.py` as before, we can check on its status with the `squeue` command:
+
+```
+[justinnhli@bletchley ~]$ srun --partition=short --nodelist=n001 --output=output.txt python3 countdown.py &
+[1] 200570
+[justinnhli@bletchley ~]$ squeue
+             JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
+             17240     short  python3 justinnh  R       0:02      1 n001
+[justinnhli@bletchley ~]$
+```
+
+The `squeue` command prints out all the jobs that are running or are waiting to run. The output is a table with the following columns:
+
+* `JOBID` - the ID of the job, which is used to refer to the job in other commands such as `scancel` (see below)
+* `PARTITION` - the partition that the job is running on
+* `NAME` - the name of the command that the job is currently running
+* `USER` - the user who submitted the job
+* `ST` - the status/state of the job. There are a large number of possible states, but the main ones you will see are:
+    * `PD` means the job is pending (waiting for a free CPU)
+    * `R` means the job is running
+    * `CD` means the job has completed
+    * `CA` means the job was canceled
+    * `F` means the job has failed
+* `TIME` - the amount of time the job has been running for
+* `NODES` - the number of nodes the job is running on
+* `NODELIST(REASON)` - the specific node(s) that the job is running on
+
+As with the `srun` command, you can look up the other options for `squeue` and `scancel` at <https://slurm.schedmd.com/squeue.html> and <https://slurm.schedmd.com/scancel.html> respectively.
+
+### Running Multiple Jobs at Once
+
 ## Language-Specific Examples
 
 This section contains additional information for specific languages/applications.

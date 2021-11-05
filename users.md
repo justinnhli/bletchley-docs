@@ -363,8 +363,8 @@ In addition to submitting jobs, you can also check on jobs that Slurm is current
 [justinnhli@bletchley ~]$ srun --partition=short --nodelist=n001 --output=output.txt python3 countdown.py &
 [1] 200570
 [justinnhli@bletchley ~]$ squeue
-             JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
-             17240     short  python3 justinnh  R       0:02      1 n001
+    JOBID  PARTITION  NAME     USER      ST  TIME  NODES  NODELIST(REASON)
+    17240  short      python3  justinnh  R   0:02  1      n001
 [justinnhli@bletchley ~]$
 ```
 
@@ -384,7 +384,22 @@ The `squeue` command prints out all the jobs that are running or are waiting to 
 * `NODES` - the number of nodes the job is running on
 * `NODELIST(REASON)` - the specific node(s) that the job is running on
 
-As with the `srun` command, you can look up the other options for `squeue` and `scancel` at <https://slurm.schedmd.com/squeue.html> and <https://slurm.schedmd.com/scancel.html> respectively.
+A common use of the `squeue` command is to check on a submitted job and, if necessary, cancel it. This may occur because a different partition/node should be used, or because a bug was discovered in the job. Whatever the reason, a job can be stopped with the `scancel` command. If we wanted to cancel my Python job from before, for example, we would use the command:
+
+```sh
+scancel 17240
+```
+
+The `17240` is the job ID from the `squeue` command. It is *extremely important* that you double-check this ID before running `scancel`, as there is no confirmation and you could accidentally cancel a long-running job. If no errors are printed, the job was successfully canceled.
+
+```
+[justinnhli@bletchley ~]$ scancel 17240
+[justinnhli@bletchley ~]$ squeue
+    JOBID  PARTITION  NAME     USER      ST  TIME  NODES  NODELIST(REASON)
+[justinnhli@bletchley ~]$
+```
+
+As with the `srun` command, you can look up the additional options for `squeue` and `scancel` at <https://slurm.schedmd.com/squeue.html> and <https://slurm.schedmd.com/scancel.html> respectively.
 
 ### Running Multiple Jobs at Once
 

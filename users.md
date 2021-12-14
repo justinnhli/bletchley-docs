@@ -428,7 +428,7 @@ It is common for Python projects to require additional packages, which you shoul
 
 ## Additional Support
 
-* who to email
+*Summary: Email [David Dellinger](mailto:ddellinger@oxy.edu) (preferred), [Prof. Jeff Cannon](mailto:jcannon@oxy.edu), or [Prof. Justin Li](mailto:justinnhli@oxy.edu) if you need more help.*
 
 ## Appendix: Bletchley Technical Details
 

@@ -353,6 +353,14 @@ Notice that this time, the command line will respond if we run the `ls` command.
 [...]
 ```
 
+<!-- FIXME
+Note: If you get a message like
+
+srun: job 17235 queued and waiting for resources
+
+slurmstepd: error: *** STEP 17239.0 ON n002 CANCELLED AT 2021-11-04T14:44:21 DUE TO TIME LIMIT ***
+-->
+
 ### Monitoring and Managing Jobs
 
 *Summary: Use the `squeue` command to see what jobs are running, and the `scancel` command to cancel running/scheduled jobs.*

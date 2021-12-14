@@ -72,7 +72,6 @@ hostname
 
 This command will print out which computer you are currently on. After you press Enter, the screen print `bletchley.oxy.edu`, which means that you have successfully logged into Bletchley.
 
-
 <!--
 * user accounts (who to contact)
 * VPN and SSH
@@ -433,13 +432,13 @@ It is common for Python projects to require additional packages, which you shoul
 
 ## Appendix: Bletchley Technical Details
 
-As of summer 2021, the cluster is made of 27 individual computers (*nodes*), including:
+As of summer 2021, the cluster is made of 27 individual nodes, including:
 
 * 1 *head node* that manages the jobs to be run by the other nodes
 * 24 *compute nodes* that does the actual work. Each compute node has:
     * 36 * 2.6GHz CPUs
-    * 8 nodes with 2.6, 10.6, and 21.3 GBs RAM/CPU each
-    * 960 GB hard disk space
+    * 8 nodes with 2.6, 10.6, and 21.3GBs RAM/CPU each
+    * 960GB hard disk space
 * 1 *GPU node* with several GPUs to speed up certain kinds of operations
 * 1 *storage node* that can store results and datasets
     * 2 * 960GB hard disk space

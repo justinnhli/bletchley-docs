@@ -56,7 +56,7 @@ ssh username@bletchley.oxy.edu
 
 Then press Enter. You will then be prompted for password. *Note that when you type your password, no characters will show up - this is normal!* If your log in to Bletchley is successful, your screen should not look markedly different. Here is what my screen shows:
 
-```
+```console
 [justinnhli@air2019 ~]$ ssh justinnhli@bletchley.oxy.edu
 justinnhli@bletchley.oxy.edu's password:
 Last login: Sat May  1 15:52:20 2021
@@ -83,7 +83,7 @@ This command will print out which computer you are currently on. After you press
 
 The *command line interface* (CLI) or sometimes the *terminal* is a text-based interface for doing things on a computer. CLIs were originally the only way to get a computer to do things, until the development of the graphical user interface (GUI) in the mid 1970s, which eventually led to Windows and OS X that you're familiar with. Here is an example command line session:
 
-```
+```console
 [justinnhli@bletchley ~]$ ls
  bin   courses   Desktop   Downloads   Dropbox   git   Library   media  'My Games'   oxy   papers   pim   scholarship   work
 [justinnhli@bletchley ~]$ ls -l
@@ -139,7 +139,7 @@ That's really it! The rest of using the command line is about knowing what comma
 
 When you first log into Bletchley, you will be in your "home directory". ("Directory" is another word for "folder".) All your files and folders will be inside this directory, and it's your private workspace on the cluster. To confirm this, the first command is `pwd`:
 
-```
+```console
 [justinnhli@bletchley ~]$ pwd
 /home/justinnhli
 [justinnhli@bletchley ~]$
@@ -149,14 +149,14 @@ When you first log into Bletchley, you will be in your "home directory". ("Direc
 
 To make things more interesting, let's create a new folder. You can do this with the `mkdir` command:
 
-```
+```console
 [justinnhli@bletchley ~]$ mkdir test
 [justinnhli@bletchley ~]$
 ```
 
 `mkdir` stands for "make directory", and the command should have created a folder called `test`. Notice that nothing else was printed out after the `mkdir` command. This is perfectly normal - CLIs tend to be rather terse, so no printout usually means that the command succeeded. To confirm that we did in fact create the `test` folder, we can use `ls`:
 
-```
+```console
 [justinnhli@bletchley ~]$ ls
  test
 [justinnhli@bletchley ~]$
@@ -164,7 +164,7 @@ To make things more interesting, let's create a new folder. You can do this with
 
 The last command we will talk about here is `cd`, which stands for "change directory". As you might imagine, this will take you inside a folder:
 
-```
+```console
 [justinnhli@bletchley ~]$ cd test
 [justinnhli@bletchley test]$ pwd
 /home/justinnhli/test
@@ -176,7 +176,7 @@ The three commands we used here first took us into the `test` folder (`cd test`)
 
 Finally, we can go back to our home directory using `cd` without any arguments:
 
-```
+```console
 [justinnhli@bletchley test]$ cd
 [justinnhli@bletchley ~]$ pwd
 /home/justinnhli
@@ -276,7 +276,7 @@ print(socket.gethostname())
 
 We can run the script like this:
 
-```
+```console
 [justinnhli@bletchley ~]$ python3 hostname.py
 bletchley.oxy.edu
 ```
@@ -289,7 +289,7 @@ srun --partition=demo --nodelist=n001 --output=output.txt python3 hostname.py
 
 This means that we are asking Slurm to run `python3 hostname.py` on the `demo` partition on node `n001`, and saving the output to `output.txt`. Let's see what happens when we do this:
 
-```
+```console
 [justinnhli@bletchley ~]$ ls
 hostname.py
 [justinnhli@bletchley ~]$ srun --partition=demo --nodelist=n001 --output=output.txt python3 hostname.py
@@ -328,13 +328,13 @@ for time in reversed(range(1, n + 1)):
 
 This program will count down from 300 every second until it reaches 0, meaning it will take 300 seconds = 5 minutes to complete. If we run it as before:
 
-```
+```console
 [justinnhli@bletchley ~]$ srun --partition=demo --nodelist=n001 --output=output.txt python3 countdown.py
 ```
 
 Your command line will just hang waiting for the program to finish - nothing will happen even if you type more commands or press Enter. (Note that the job will actually be terminated after 1 minute instead of the full 5 minutes, because we are running it on the `demo` partition.) To make the job run in the background instead, we append a `&` at the end of the `srun` command:
 
-```
+```console
 [justinnhli@bletchley ~]$ srun --partition=short --nodelist=n001 --output=output.txt python3 countdown.py &
 [1] 196488
 [justinnhli@bletchley ~]$
@@ -344,7 +344,7 @@ countdown.py
 
 Notice that this time, the command line will respond if we run the `ls` command. If we wait the 5 minutes and come back, we will see that `output.txt` indeed as our countdown:
 
-```
+```console
 [justinnhli@bletchley ~]$ cat output.txt
 300
 299
@@ -366,7 +366,7 @@ slurmstepd: error: *** STEP 17239.0 ON n002 CANCELLED AT 2021-11-04T14:44:21 DUE
 
 In addition to submitting jobs, you can also check on jobs that Slurm is currently running, and cancel them if it's necessary. If we submit a job for `countdown.py` as before, we can check on its status with the `squeue` command:
 
-```
+```console
 [justinnhli@bletchley ~]$ srun --partition=short --nodelist=n001 --output=output.txt python3 countdown.py &
 [1] 200570
 [justinnhli@bletchley ~]$ squeue
@@ -399,7 +399,7 @@ scancel 17240
 
 The `17240` is the job ID from the `squeue` command. It is *extremely important* that you double-check this ID before running `scancel`, as there is no confirmation and you could accidentally cancel a long-running job. If no errors are printed, the job was successfully canceled.
 
-```
+```console
 [justinnhli@bletchley ~]$ scancel 17240
 [justinnhli@bletchley ~]$ squeue
     JOBID  PARTITION  NAME     USER      ST  TIME  NODES  NODELIST(REASON)

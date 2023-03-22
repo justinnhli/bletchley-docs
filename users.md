@@ -50,7 +50,7 @@ Once you have activated the connection to Oxy's network, you can now SSH to log 
 
 __To SSH into Bletchley from your computer__, you will need a terminal. If you are on a Mac, you can open the Terminal app. On Windows, you can FIXME. Regardless, once you are in the terminal, you should type (replacing `username` with your given username):
 
-```
+```sh
 ssh username@bletchley.oxy.edu
 ```
 
@@ -66,7 +66,7 @@ Last login: Sat May  1 15:52:20 2021
 
 To confirm that you've logged in, you can type:
 
-```
+```sh
 hostname
 ```
 
@@ -422,7 +422,7 @@ This section contains additional information for specific languages/applications
 
 The Matlab executable is at `/opt/MATLAB/R2020b/bin/matlab`, and in order to run a Matlab file, do:
 
-```
+```sh
 /opt/MATLAB/R2020b/bin/matlab -nosplash -nodisplay -batch 'COMMAND'
 ```
 

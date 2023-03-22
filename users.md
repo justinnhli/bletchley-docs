@@ -441,7 +441,7 @@ end
 
 We can then run this function with:
 
-```
+```sh
 /opt/MATLAB/R2020b/bin/matlab -nosplash -nodisplay -batch 'MyAdd(1,2)'
 ```
 

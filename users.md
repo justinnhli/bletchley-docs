@@ -420,6 +420,43 @@ This section contains additional information for specific languages/applications
 
 ### Matlab
 
+The Matlab executable is at `/opt/MATLAB/R2020b/bin/matlab`, and in order to run a Matlab file, do:
+
+```
+/opt/MATLAB/R2020b/bin/matlab -nosplash -nodisplay -batch 'COMMAND'
+```
+
+* The `-nosplash` means that Matlab will not display a welcome message when starting up
+* The `-nodisplay` tells Matlab that you will not need a Matlab window
+* The `-batch` tells Matlab that you want to run a file, instead of using Matlab interactively
+
+In order for Matlab scripts to be run like this, the file must contain a function with the same name; the function would then be called in the command line. For example, if I want to write a `MyAdd` function that adds two numbers and prints it, I would create a `MyAdd.m` file that contains:
+
+```matlab
+function MyAdd(a, b)
+    c = a + b;
+    display(c);
+end
+```
+
+We can then run this function with:
+
+```
+/opt/MATLAB/R2020b/bin/matlab -nosplash -nodisplay -batch 'MyAdd(1,2)'
+```
+
+If you need additional Matlab toolboxes, you will need to tell Matlab where to find it. This can be done with the `addpath()` function. For example, if I am using the [EEGLAB](https://eeglab.org/) toolbox, I would download the toolbox into my home directory, then include `addpath('/home/justinnhli/eeglab');` in my script:
+
+```matlab
+function AnalyzeData(filename)
+    % tell Matlab where to find EEGLAB
+    addpath('/home/justinnhli/eeglab'); 
+    % initiailize EEGLAB
+    eeglab;
+    % do my work
+end
+```
+
 ### Python
 
 It is common for Python projects to require additional packages, which you should install using `pip` in a virtual environment. See <https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/> for a detailed set of instructions for how to do this.

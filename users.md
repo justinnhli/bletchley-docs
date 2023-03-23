@@ -352,6 +352,8 @@ Notice that this time, the command line will respond if we run the `ls` command.
 [...]
 ```
 
+Since the job is now running in the background, it is okay for you to quit the command line. To ensure that the job continues to run in the background, you should use the `exit` command (instead of directly closing your command line window).
+
 <!-- FIXME
 Note: If you get a message like
 

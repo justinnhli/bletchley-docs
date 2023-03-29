@@ -437,8 +437,6 @@ Once you are connected, you can test whether X11 port forwarding was enabled wit
 
 This section contains additional information for specific languages/applications.
 
-### Docker
-
 ### Gaussian
 
 ### Matlab

@@ -461,6 +461,21 @@ function AnalyzeData(filename)
 end
 ```
 
+A note on toolboxes: although our Matlab license gives us access to a number of toolboxes, they are not installed by default. To check what toolboxes are installed, you can use `ver` the command inside Matlab. As of this writing, this will give the output:
+
+```
+>> ver
+MATLAB                                                Version 9.9         (R2020b)
+Simulink                                              Version 10.2        (R2020b)
+Deep Learning Toolbox                                 Version 14.1        (R2020b)
+Optimization Toolbox                                  Version 9.0         (R2020b)
+Signal Processing Toolbox                             Version 8.5         (R2020b)
+Statistics and Machine Learning Toolbox               Version 12.0        (R2020b)
+Symbolic Math Toolbox                                 Version 8.6         (R2020b)
+```
+
+If you need additional toolboxes, please contact us using the information in the [Additional Support](#additional-support) section.
+
 ### Python
 
 It is common for Python projects to require additional packages, which you should install using `pip` in a virtual environment. See <https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/> for a detailed set of instructions for how to do this.

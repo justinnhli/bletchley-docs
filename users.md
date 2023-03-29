@@ -362,6 +362,8 @@ srun: job 17235 queued and waiting for resources
 slurmstepd: error: *** STEP 17239.0 ON n002 CANCELLED AT 2021-11-04T14:44:21 DUE TO TIME LIMIT ***
 -->
 
+Once a job is running in the background, you can then start additional backgrounds jobs, and they will all run simultaneously.
+
 ### Monitoring and Managing Jobs
 
 *Summary: Use the `squeue` command to see what jobs are running, and the `scancel` command to cancel running/scheduled jobs.*
@@ -409,8 +411,6 @@ The `17240` is the job ID from the `squeue` command. It is *extremely important*
 ```
 
 As with the `srun` command, you can look up the additional options for `squeue` and `scancel` at <https://slurm.schedmd.com/squeue.html> and <https://slurm.schedmd.com/scancel.html> respectively.
-
-### Running Multiple Jobs at Once
 
 ## Language-Specific Examples
 

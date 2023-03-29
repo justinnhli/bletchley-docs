@@ -18,6 +18,19 @@ As of 2023-03-29, David Dellinger <mailto:ddellinger@oxy.edu>, Jeff Cannon <jcan
 
 Uptime, usage, and other statistics can be found on [Ganglia](https://ganglia.oxy.edu/ganglia/).
 
+## Installing Matlab Toolboxes
+
+Matlab toolboxes can be installed via the Matlab graphical interface, under the Environment > Add-Ons > Get Add-Ons in the ribbon. The tricky part is starting Matlab graphically _after_ `su`-ing as `root`, since Matlab requires permissions to download and save the toolboxes. The set of instructions below is adapted from <https://www.simplified.guide/ssh/x11-forwarding-as-root>:
+
+1. `ssh -Y` to Bletchley as usual.
+2. `echo $DISPLAY` to print the `DISPLAY` environment variable. The output should look something like `localhost:11.0`.
+3. `xauth list $DISPLAY` to print the X authorization for that display. The output should look something like `bletchley.oxy.edu/unix:11 MIT-MAGIC-COOKIE-1 c011571d3221b13d607dd98c3f53c3d3`.
+4. `su` to `root`
+5. `export DISPLAY=localhost:11.0`, substituting `localhost:11.0` with the output of Step 2 above.
+6. `xauth add bletchley.oxy.edu/unix:11 MIT-MAGIC-COOKIE-1 c011571d3221b13d607dd98c3f53c3d3`, substituting the last three terms with the output of Step 3 above
+
+You should now be set for X11 port forwarding as root, and you can run `xclock` to confirm.
+
 ## Bletchley Technical Details
 
 A total of 27 nodes are currently part of Slurm:

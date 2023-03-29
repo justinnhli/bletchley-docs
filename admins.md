@@ -16,6 +16,8 @@ As of 2023-03-29, David Dellinger <mailto:ddellinger@oxy.edu>, Jeff Cannon <jcan
 
 ## System Monitoring
 
+Uptime, usage, and other statistics can be found on [Ganglia](https://ganglia.oxy.edu/ganglia/).
+
 ## Slurm Technical Details
 
 ## System Test Scripts

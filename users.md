@@ -5,6 +5,8 @@
 * [The Bletchley Cluster](#the-bletchley-cluster)
 * [Accessing Bletchley](#accessing-bletchley)
 * [Command Line Basics](#command-line-basics)
+    * [Navigating via the Command Line](#navigating-via-the-command-line)
+    * [Additional Resources](#additional-resources)
 * [Uploading and Downloading Files](#uploading-and-downloading-files)
 * [Running Your Code](#running-your-code)
     * [Running Jobs in the Foreground](#running-jobs-in-the-foreground)

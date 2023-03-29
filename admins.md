@@ -18,6 +18,15 @@ As of 2023-03-29, David Dellinger <mailto:ddellinger@oxy.edu>, Jeff Cannon <jcan
 
 Uptime, usage, and other statistics can be found on [Ganglia](https://ganglia.oxy.edu/ganglia/).
 
-## Slurm Technical Details
+## Bletchley Technical Details
+
+A total of 27 nodes are currently part of Slurm:
+
+* the head node
+* the storage node
+* computer nodes `n001` to `n024`
+* the GPU node `gpu1`
+
+A list of additional nodes and their owners can be found at <https://docs.google.com/spreadsheets/d/12IxAKP-Ieh4plhyPw7QrCqftc2rbow_nuxuc_XUx4PU/edit#gid=0>
 
 ## System Test Scripts

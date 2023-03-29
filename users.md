@@ -12,6 +12,7 @@
     * [Running Jobs in the Foreground](#running-jobs-in-the-foreground)
     * [Running Jobs in the Background](#running-jobs-in-the-background)
     * [Monitoring and Managing Jobs](#monitoring-and-managing-jobs)
+* [Running a Graphical Application](#running-a-graphical-application)
 * [Language-Specific Examples](#language-specific-examples)
     * [Docker](#docker)
     * [Gaussian](#gaussian)
@@ -413,6 +414,24 @@ The `17240` is the job ID from the `squeue` command. It is *extremely important*
 ```
 
 As with the `srun` command, you can look up the additional options for `squeue` and `scancel` at <https://slurm.schedmd.com/squeue.html> and <https://slurm.schedmd.com/scancel.html> respectively.
+
+## Running a Graphical Application
+
+*Summary: use MobaXterm (Windows) or XQuartz (MacOS) to connect to the cluster with "X11 port forwarding".*
+
+There are times when using a graphical application is helpful. While it's possible to use Matlab via the text command line, for example, the graphical version has a lot of tools that simplify coding and debugging.
+
+To start a graphical application on the cluster, you will need a program that supports "X11 port forwarding" - that is, a way for the cluster to tell your computer what to display. You will need to then connect to the cluster with that setting turned on. 
+
+* On Windows, [MobaXterm](https://mobaxterm.mobatek.net/) supports X11 port forwarding by default. 
+
+* On MacOS, you will need [XQuartz](https://www.xquartz.org/). After installation, start XQuartz, then go to the XQuartz Applications menu and start its terminal. Instead of using `ssh` like before, you will use `ssh -Y` instead to enable X11 port forwarding, eg. `ssh -Y username@bletchley.oxy.edu`.
+
+Once you are connected, you can test whether X11 port forwarding was enabled with the command `xclock`. If a graphical clock shows up, everything is set up correctly. Since you are still on the head node, however, you should `ssh -Y` again to another node before starting your application. For example, if I want to start Matlab (from my MacOS computer), we would ultimately use these three commands:
+
+1. `ssh -Y justinnhli@bletchley.oxy.edu` from my computer, to connect to the cluster with X11 port forwarding enabled.
+2. `ssh -Y n001` to further connect to a specific node (in this case, node `n001`).
+3. `/opt/MATLAB/R2020b/bin/matlab` to start Matlab.
 
 ## Language-Specific Examples
 

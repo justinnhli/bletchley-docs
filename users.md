@@ -231,12 +231,17 @@ In general, your workflow for using Bletchley will look like this:
 
 In workload manager parlance, the code your submit to Slurm is called a *job*. When you submit a job to Slurm, you must specify which *partition* the job goes into. For Bletchley, the partitions are separated by the amount of memory your code needs, and how long you think your code will run for. Based on those requirements, Slurm will then assign an appropriate CPU(s) to run the job. The partitions available on Bletchley are:
 
-* `demo`, which has a runtime limit of 1 minute
-* `teaching`, which has a runtime limit of 5 minutes
-* `short`, which has a runtime limit of 5 hours
-* `medium`, which has a runtime limit of 48 hours
-* `long`, which has a runtime limit of 7 days
-* `unlimited`, which has an unlimited runtime
+    PARTITION       NODE(S)     RUNTIME
+    ---------       -------     -------
+    `teaching`      n001        5 min
+    `short`         n[001-002]  5 hours
+    `short-himem`   n017        5 hours
+    `medium`        n[003-016]  48 hours
+    `medium-himem`  n[018-020]  48 hours
+    `long`          n[021-022]  7 days
+    `unlimited`     n[023-024]  INFINITE
+    `demo`          n001        1 min
+    `gpu`           gpu01       INFINITE
 
 Note: there are additional partitions reserved for particular research groups; your professor or the HPCC will tell you if you should use any of those instead.
 

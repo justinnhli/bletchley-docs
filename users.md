@@ -229,19 +229,20 @@ In general, your workflow for using Bletchley will look like this:
 5. Submit your code to Slurm and wait for it to finish
 6. Download any result files to be analyzed.
 
-In workload manager parlance, the code your submit to Slurm is called a *job*. When you submit a job to Slurm, you must specify which *partition* the job goes into. For Bletchley, the partitions are separated by the amount of memory your code needs, and how long you think your code will run for. Based on those requirements, Slurm will then assign an appropriate CPU(s) to run the job. The partitions available on Bletchley are:
+In workload manager parlance, the code your submit to Slurm is called a *job*. When you submit a job to Slurm, you must specify which *partition* the job goes into. For Bletchley, the partitions are separated by the amount of memory your code needs, and how long you think your code will run for. Based on those requirements, Slurm will then assign an appropriate CPU(s) to run the job. The most up-to-date partitions can be found by running the `sinfo` command on Bletchley, but as of this writing, the partitions available on Bletchley are:
 
-    PARTITION       NODE(S)     RUNTIME
-    ---------       -------     -------
-    `teaching`      n001        5 min
-    `short`         n[001-002]  5 hours
-    `short-himem`   n017        5 hours
-    `medium`        n[003-016]  48 hours
-    `medium-himem`  n[018-020]  48 hours
-    `long`          n[021-022]  7 days
-    `unlimited`     n[023-024]  INFINITE
-    `demo`          n001        1 min
-    `gpu`           gpu01       INFINITE
+    PARTITION  TIMELIMIT   NODELIST
+    ---------  ---------   --------
+    teaching   5:00        n[001-024]
+    short      5:00:00     n032
+    short      5:00:00     n[001-024]
+    medium     2-00:00:00  n032
+    medium     2-00:00:00  n[003-024]
+    long       7-00:00:00  n032
+    long       7-00:00:00  n[020-024]
+    unlimited  infinite    n024
+    demo*      1:00        n[001-024]
+    gpu        infinite    gpu01
 
 Note: there are additional partitions reserved for particular research groups; your professor or the HPCC will tell you if you should use any of those instead.
 

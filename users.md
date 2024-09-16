@@ -443,8 +443,6 @@ Once you are connected, you can test whether X11 port forwarding was enabled wit
 
 This section contains additional information for specific languages/applications.
 
-### Gaussian
-
 ### Matlab
 
 The Matlab executable is at `/opt/MATLAB/R2020b/bin/matlab`, and in order to run a Matlab file, do:
@@ -502,8 +500,6 @@ If you need additional toolboxes, please contact us using the information in the
 ### Python
 
 It is common for Python projects to require additional packages, which you should install using `pip` in a virtual environment. See <https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/> for a detailed set of instructions for how to do this.
-
-### R
 
 ## Additional Support
 

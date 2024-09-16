@@ -443,6 +443,16 @@ Once you are connected, you can test whether X11 port forwarding was enabled wit
 
 This section contains additional information for specific languages/applications.
 
+### Git
+
+A complete introduction to git is beyond the scope of this document, but git is a great way to manage your code and transfer it to the cluster. The simplest and most common use case is where you develop code on another computer, then upload ("push") the code to GitHub and download ("clone"/"pull") the code onto the cluster. For example, the following command will download the repository that contains this document:
+
+```sh
+git clone https://github.com/justinnhli/bletchley-docs.git
+```
+
+If you are using a private repository, or want to develop code on and push to GitHub from the cluster, you will need to create an SSH key and register it with GitHub. See <https://docs.github.com/en/authentication/connecting-to-github-with-ssh> for a detailed set of instructions for how to do this.
+
 ### Matlab
 
 The Matlab executable is at `/opt/MATLAB/R2020b/bin/matlab`, and in order to run a Matlab file, do:
